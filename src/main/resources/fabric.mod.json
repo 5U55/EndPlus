@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "endplus",
+  "version": "${version}",
+
+  "name": "End Plus Mod",
+  "description": "Mod that adds more features to the End by EJS",
+  "authors": [
+    "EJS"
+  ],
+  "contact": {
+    "homepage": "",
+    "sources": ""
+  },
+
+  "license": "CC0-1.0",
+  "icon": "assets/endplus/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.ejs.endplus.EndPlus"
+    ], 
+	"client": [
+		"com.ejs.endplus.EndPlusClient"
+	]
+  },
+  "mixins": [
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.7.4",
+    "fabric": "*",
+    "minecraft": "1.16.x"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
