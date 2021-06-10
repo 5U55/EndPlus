@@ -5,6 +5,8 @@ import com.ejs.endplus.features.DragonSkeleton;
 import com.ejs.endplus.features.DragonSkeletonPiece;
 import com.ejs.endplus.features.EndTemple;
 import com.ejs.endplus.features.EndTemplePiece;
+import com.ejs.endplus.features.RuinedTower;
+import com.ejs.endplus.features.RuinedTowerPiece;
 import com.ejs.endplus.registry.ModItems;
 
 import net.fabricmc.api.ModInitializer;
@@ -86,6 +88,10 @@ public class EndPlus implements ModInitializer{
 	private static final StructureFeature<DefaultFeatureConfig> END_TEMPLE_STRUCTURE  = new EndTemple(DefaultFeatureConfig.CODEC);
 	private static final ConfiguredStructureFeature<?, ?> END_TEMPLE_CONFIGURED = END_TEMPLE_STRUCTURE.configure(DefaultFeatureConfig.DEFAULT);
 
+	public static final StructurePieceType RUINED_TOWER = RuinedTowerPiece::new;
+	private static final StructureFeature<DefaultFeatureConfig> RUINED_TOWER_STRUCTURE  = new RuinedTower(DefaultFeatureConfig.CODEC);
+	private static final ConfiguredStructureFeature<?, ?> RUINED_TOWER_CONFIGURED = RUINED_TOWER_STRUCTURE.configure(DefaultFeatureConfig.DEFAULT);
+	
 	public static final EntityType<EndermanBruteEntity> ENDERMAN_BRUTE = Registry.register(Registry.ENTITY_TYPE, 
 			new Identifier(MOD_ID, "enderman_brute"), 
 			FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, EndermanBruteEntity::new).dimensions(EntityDimensions.fixed(1f, 3f)).build());
@@ -103,14 +109,21 @@ public class EndPlus implements ModInitializer{
 		Registry.register(Registry.STRUCTURE_PIECE, new Identifier(MOD_ID, "dragon_skeleton_piece"), DRAGON_SKELETON);
 		FabricStructureBuilder.create(new Identifier(MOD_ID, "dragon_skeleton"), DRAGON_SKELETON_STRUCTURE)
 			.step(GenerationStep.Feature.SURFACE_STRUCTURES)
-			.defaultConfig(32, 8, 12345)
+			.defaultConfig(32, 8, 678452)
 			.adjustsSurface()
 			.register();
 		
 		Registry.register(Registry.STRUCTURE_PIECE, new Identifier(MOD_ID, "end_temple_piece"), END_TEMPLE);
 		FabricStructureBuilder.create(new Identifier(MOD_ID, "end_temple"), END_TEMPLE_STRUCTURE)
 			.step(GenerationStep.Feature.SURFACE_STRUCTURES)
-			.defaultConfig(100, 8, 23457)
+			.defaultConfig(100, 8, 547341)
+			.adjustsSurface()
+			.register();
+		
+		Registry.register(Registry.STRUCTURE_PIECE, new Identifier(MOD_ID, "ruined_tower_piece"), RUINED_TOWER);
+		FabricStructureBuilder.create(new Identifier(MOD_ID, "ruined_tower"), RUINED_TOWER_STRUCTURE)
+			.step(GenerationStep.Feature.SURFACE_STRUCTURES)
+			.defaultConfig(100, 8, 2347523)
 			.adjustsSurface()
 			.register();
 		
@@ -121,6 +134,10 @@ public class EndPlus implements ModInitializer{
 		RegistryKey<ConfiguredStructureFeature<?, ?>> dragonSkeletonConfigured = RegistryKey.of(Registry.CONFIGURED_STRUCTURE_FEATURE_WORLDGEN, new Identifier(MOD_ID, "dragon_skeleton"));
 		BuiltinRegistries.add(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, dragonSkeletonConfigured.getValue() , DRAGON_SKELETON_CONFIGURED);
 		BiomeModifications.addStructure(BiomeSelectors.foundInTheEnd(), dragonSkeletonConfigured);
+		
+		RegistryKey<ConfiguredStructureFeature<?, ?>> ruinedTowerConfigured = RegistryKey.of(Registry.CONFIGURED_STRUCTURE_FEATURE_WORLDGEN, new Identifier(MOD_ID, "ruined_tower"));
+		BuiltinRegistries.add(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, ruinedTowerConfigured.getValue() , RUINED_TOWER_CONFIGURED);
+		BiomeModifications.addStructure(BiomeSelectors.foundInTheEnd(), ruinedTowerConfigured);
 	
 		FabricDefaultAttributeRegistry.register(ENDERMAN_BRUTE, EndermanBruteEntity.createEndermanAttributes());
 	}
