@@ -109,21 +109,21 @@ public class EndPlus implements ModInitializer{
 		Registry.register(Registry.STRUCTURE_PIECE, new Identifier(MOD_ID, "dragon_skeleton_piece"), DRAGON_SKELETON);
 		FabricStructureBuilder.create(new Identifier(MOD_ID, "dragon_skeleton"), DRAGON_SKELETON_STRUCTURE)
 			.step(GenerationStep.Feature.SURFACE_STRUCTURES)
-			.defaultConfig(32, 8, 678452)
+			.defaultConfig(32, 8, 12345)
 			.adjustsSurface()
 			.register();
 		
 		Registry.register(Registry.STRUCTURE_PIECE, new Identifier(MOD_ID, "end_temple_piece"), END_TEMPLE);
 		FabricStructureBuilder.create(new Identifier(MOD_ID, "end_temple"), END_TEMPLE_STRUCTURE)
 			.step(GenerationStep.Feature.SURFACE_STRUCTURES)
-			.defaultConfig(100, 8, 547341)
+			.defaultConfig(100, 8, 23457)
 			.adjustsSurface()
 			.register();
 		
 		Registry.register(Registry.STRUCTURE_PIECE, new Identifier(MOD_ID, "ruined_tower_piece"), RUINED_TOWER);
 		FabricStructureBuilder.create(new Identifier(MOD_ID, "ruined_tower"), RUINED_TOWER_STRUCTURE)
 			.step(GenerationStep.Feature.SURFACE_STRUCTURES)
-			.defaultConfig(100, 8, 2347523)
+			.defaultConfig(100, 8, 56788)
 			.adjustsSurface()
 			.register();
 		

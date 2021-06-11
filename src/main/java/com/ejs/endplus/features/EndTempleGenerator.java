@@ -14,7 +14,7 @@ public class EndTempleGenerator {
 	private static final Identifier END_TEMPLE = new Identifier(EndPlus.MOD_ID, "end_temple");
 	
 	public static void addPieces(StructureManager manager, BlockPos pos, BlockRotation rotation, List<StructurePiece> pieces) {
-		if(pos.getY()!=0 && pos.getY()>90 && pos.getZ()>90) {
+		if(pos.getY()!=0) {
 		pieces.add(new EndTemplePiece(manager, pos, END_TEMPLE, rotation));
 		}
 	}

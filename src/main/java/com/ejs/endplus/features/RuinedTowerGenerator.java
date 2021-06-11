@@ -10,8 +10,10 @@ import net.minecraft.structure.StructurePiece;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 
 public class RuinedTowerGenerator {
+	private static final Identifier EXIT_PORTAL = new Identifier(EndPlus.MOD_ID, "ruined_exit_portal");
 	private static final Identifier RUINED_TOWER_1 = new Identifier(EndPlus.MOD_ID, "ruined_tower");
 	private static final Identifier RUINED_TOWER_2 = new Identifier(EndPlus.MOD_ID, "ruined_tower_2");
 	private static final Identifier RUINED_TOWER_3 = new Identifier(EndPlus.MOD_ID, "ruined_tower_3");
@@ -22,17 +24,17 @@ public class RuinedTowerGenerator {
 	public static void addPieces(StructureManager manager, BlockPos pos, BlockRotation rotation,
 			List<StructurePiece> pieces) {
 		if (pos.getY() != 0) {
+			pieces.add(new RuinedTowerPiece(manager, pos, EXIT_PORTAL, rotation));
+			for (int i = 0; i < 4; i++) {
+				int j = MathHelper
+						.floor(42.0D * Math.cos(18*i));
+				int k = MathHelper
+						.floor(42.0D * Math.sin(18*i));
+				BlockPos newpos = new BlockPos.Mutable(j+pos.getX(), pos.getY() - 1, k+pos.getZ());
 
-			/*
-			 * for(int i=0; i<4; i++) { int j = MathHelper.floor(2.0D * Math.cos(2.0D *
-			 * (-3.141592653589793D + 0.3141592653589793D * (double)i))); int k =
-			 * MathHelper.floor(2.0D * Math.sin(2.0D * (-3.141592653589793D +
-			 * 0.3141592653589793D * (double)i))); BlockPos newpos= new BlockPos.Mutable(j,
-			 * pos.getY()-1, k);
-			 */
-			int rand = new Random().nextInt(4);
-			pieces.add(new RuinedTowerPiece(manager, pos, TOWER_IDS[rand], rotation));
-			// }
+				int rand = new Random().nextInt(4);
+				pieces.add(new RuinedTowerPiece(manager, newpos, TOWER_IDS[rand], rotation));
+			}
 		}
 	}
 }
